@@ -1,25 +1,25 @@
-# Mundo Viagens – Sistema Web de Pacotes de Viagem
+# Mundo Viagens · Frontend
 
-## Como executar
-1. Instale o Python 3.10 ou superior.
-2. Dê dois cliques em `iniciar.bat` (ou rode `pip install -r requirements.txt` e depois `python app.py`).
-3. Acesse http://127.0.0.1:5000
+Interface web do sistema da agência Mundo Viagens: site do cliente e painel da equipe. HTML, CSS e JavaScript puros (sem etapa de build), consumindo a API separada.
 
-## Usuários de teste
+- Site: https://mundo-viagens-web.onrender.com
+- API: https://github.com/thiago10-lang/mundo-viagens-api
+
+## Funcionalidades
+**Cliente:** busca de voos em tempo real, compra de passagens e pacotes com hotel, vários passageiros por reserva, pagamento com cartão, Pix ou boleto, cupons de desconto, programa de pontos com níveis Bronze/Prata/Ouro, check-in online com mapa de assentos, bilhete eletrônico com QR Code (imprimível em PDF), cancelamento com simulação de multa, notificações e central de atendimento.
+
+**Funcionário:** visão geral da operação, consulta de reservas, confirmação de pagamentos por boleto, ficha do cliente, atendimento de chamados e relatórios com exportação em CSV.
+
+**Gerente:** tudo do funcionário, mais bloqueio de clientes, criação de viagens, hotéis, promoções e cupons, configuração de valores, gestão de funcionários e auditoria.
+
+## Executar localmente
+Com a API rodando em http://127.0.0.1:5000, sirva esta pasta com qualquer servidor estático (por exemplo `python -m http.server 8080`) e acesse http://127.0.0.1:8080. Se as pastas `mundo-viagens-api` e `mundo_viagens` estiverem lado a lado, basta rodar a API e abrir http://127.0.0.1:5000.
+
+O endereço da API fica em `js/config.js`.
+
+## Contas de demonstração
 | Perfil | E-mail | Senha |
 |---|---|---|
 | Cliente | cliente@teste.com | cliente123 |
-| Atendente | atendente@mundoviagens.com | atendente123 |
+| Funcionário | funcionario@mundoviagens.com | funcionario123 |
 | Gerente | gerente@mundoviagens.com | gerente123 |
-| Dona | dona@mundoviagens.com | dona123 |
-
-Painel da agência: http://127.0.0.1:5000/admin/login
-
-## Estrutura
-- `app.py` – rotas e regras de negócio (RN1 a RN6)
-- `banco.py` – banco SQLite, tabelas, dados iniciais e log de auditoria
-- `companhias.py` – integração com companhias aéreas (interface `CompanhiaAerea`, cliente HTTPS `SkyHighAPI`, simulador `SkyHighSimulada` e retentativa automática)
-- `templates/` e `static/` – telas responsivas
-
-## API real da SkyHigh
-Enquanto a API não é liberada, o sistema usa um simulador. Quando estiver disponível, basta definir as variáveis de ambiente `SKYHIGH_URL` (obrigatoriamente `https://`) e `SKYHIGH_CHAVE`. Novas companhias podem ser adicionadas criando outra classe que herde de `CompanhiaAerea` e registrando-a em `obter_companhias()`.
